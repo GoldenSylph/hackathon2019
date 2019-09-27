@@ -1,7 +1,0 @@
-[submodule "VRTK"]
-      path = Assets/VRTK
-      url = https://github.com/ExtendRealityLtd/VRTK.git
-
-[submodule "Zinnia.Unity"]
-      path = Assets/VRTK/Dependencies/Zinnia.Unity
-      url = https://github.com/ExtendRealityLtd/Zinnia.Unity.git

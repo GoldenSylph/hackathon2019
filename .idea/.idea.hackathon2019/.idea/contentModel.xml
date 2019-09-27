@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\numer\.Rider2019.2\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\numer\.Rider2019.2\system\resharper-host\local\Transient\ReSharperHost\v192\SolutionCaches\_hackathon2019.1282857637.00" t="ExcludeRecursive" />
+    <e p="D:\dev\work\unity\hackathon2019" t="IncludeRecursive">
+      <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="Scripts" t="Include">
+          <e p="PostProcessing" t="Include">
+            <e p="Shaders" t="Include">
+              <e p="TunnelVignetteEffect.shader" t="Include" />
+            </e>
+            <e p="TunnelVignetteEffect.cs" t="Include" />
+          </e>
+          <e p="XR Input" t="Include">
+            <e p="Editor" t="Include">
+              <e p="InputSystemLoader.cs" t="Include" />
+            </e>
+            <e p="StaticAliases.cs" t="Include" />
+            <e p="XRController.cs" t="Include" />
+            <e p="XRControllerEvents.cs" t="Include" />
+            <e p="XRSmoothMovement.cs" t="Include" />
+          </e>
+          <e p="XRPlayer.cs" t="Include" />
+        </e>
+      </e>
+      <e p="hackathon2019.sln" t="IncludeFlat" />
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="Packages" t="ExcludeRecursive" />
+      <e p="Temp\bin" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>
