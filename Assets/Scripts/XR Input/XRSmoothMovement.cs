@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
+using XR_Input;
 using XRControls.Effects;
 using XRControls.XRInput;
 
@@ -64,14 +65,14 @@ namespace XRControls
         protected Vector3 currentVelocityVector;
 
         #region Properties
-        private XRPlayer _myXRPlayer;
-        public XRPlayer MyXRPlayer
+        private XrPlayer _myXRPlayer;
+        public XrPlayer MyXRPlayer
         {
             get
             {
                 if (_myXRPlayer == null)
                 {
-                    _myXRPlayer = GetComponent<XRPlayer>();
+                    _myXRPlayer = GetComponent<XrPlayer>();
                 }
                 return _myXRPlayer;
             }
@@ -214,7 +215,7 @@ namespace XRControls
             // Calculate local right vector
             Vector3 flatRight = Quaternion.Euler(0f, 90f, 0f) * flatForward;
             // Append input from current controller to other. Don't worry - it will be reset at the end of update loop
-            movementInputVector += (flatForward * e.vertical + flatRight * e.horizontal);
+            movementInputVector += (flatForward * e.Vertical + flatRight * e.Horizontal);
         }
 
         /// <summary>

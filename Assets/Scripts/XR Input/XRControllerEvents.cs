@@ -1,37 +1,34 @@
 using System;
 using UnityEngine;
+using XRControls.XRInput;
 
-namespace XRControls.XRInput
+namespace XR_Input
 {
-    [RequireComponent(typeof(XRController))]
-    public class XRControllerEvents : MonoBehaviour
+    [RequireComponent(typeof(XrController))]
+    public class XrControllerEvents : MonoBehaviour
     {
         #region Properties
 
-        private XRController _myXRController;
-        private XRController MyXRController
+        private XrController myXrController;
+        public XrController MyXrController
         {
             get
             {
-                if (_myXRController == null)
+                if (myXrController == null)
                 {
-                    _myXRController = GetComponent<XRController>();
+                    myXrController = GetComponent<XrController>();
                 }
 
-                return _myXRController;
+                return myXrController;
             }
         }
 
-        private string Side
-        {
-            get
-            {
-                return MyXRController.isRight ? "Right " : "Left ";
-            }
-        }
+        private string Side => MyXrController.isRight ? "Right " : "Left ";
+
         #endregion
 
         private ControllerTrackpadArgs trackpadArgs;
+        private ControllerGripArgs gripArgs;
 
         public delegate void ControllerTrackpadEventHandler(object sender, ControllerTrackpadArgs e);
         public event ControllerTrackpadEventHandler OnTrackpadTouched;
@@ -42,9 +39,15 @@ namespace XRControls.XRInput
         public event ControllerTrackpadEventHandler OnTrackpadUnpressed;
         public event ControllerTrackpadEventHandler OnTrackpadMoved;
 
+        public delegate void ControllerGripEventHandler(object sender, ControllerGripArgs e);
+        public event ControllerGripEventHandler OnGripPressed;
+        public event ControllerGripEventHandler OnGripReleased;
+
+        private const float TOLERANCE = 0.000001f;
+        
         #region Methods
-        // Update is called once per frame
-        void Update()
+
+        private void Update()
         {
             UpdateInputs();
         }
@@ -52,69 +55,105 @@ namespace XRControls.XRInput
         private void UpdateInputs()
         {
             UpdateTrackpad();
-
-            // Debug.Log("Grip: " + Input.GetAxis(Side + StaticAliases.alias_GripSqueeze));
-            // if (Input.GetButton(Side + StaticAliases.alias_TrackpadTouch))
-            // {
-            //     ControllerTrackpadArgs cta = new ControllerTrackpadArgs();
-            //     cta.horizontal = Input.GetAxis(Side + StaticAliases.alias_TrackpadHorizontal);
-            //     cta.vertical = -Input.GetAxis(Side + StaticAliases.alias_TrackpadVertical);
-            //     OnTrackpadTouched?.Invoke(this, cta);
-            // }
+            UpdateGrip();
         }
 
+        private void UpdateGrip()
+        {
+            var gripPressed = Math.Abs(Input.GetAxis(Side + StaticAliases.alias_GripSqueeze) - 1) < TOLERANCE;
+            var isPressChanged = GetButtonState(gripArgs.GripPress, gripPressed, out var newGripPressState);
+            
+            if (!isPressChanged) return;
+            gripArgs.GripPress = newGripPressState;
+            
+            switch (gripArgs.GripPress)
+            {
+                
+                case InputDataButtonState.Released:
+                    Debug.Log(OnGripReleased);
+                    OnGripReleased?.Invoke(this, gripArgs);
+                    Debug.Log("Released");
+                    break;
+                
+                case InputDataButtonState.Pressed:
+                    Debug.Log(OnGripPressed);
+                    OnGripPressed?.Invoke(this, gripArgs);
+                    Debug.Log("Pressed");
+                    break;
+
+                case InputDataButtonState.StayReleased:
+                case InputDataButtonState.StayPressed:
+                    break;
+                
+                default:
+                    break;
+            }
+        }
+        
         private void UpdateTrackpad()
         {
-            bool trackpadPress = Input.GetButton(Side + StaticAliases.alias_TrackpadPress);
-            InputDataButtonState newTrackpadPressState;
-            bool isPressChanged = GetButtonState(trackpadArgs.trackpadPress, trackpadPress, out newTrackpadPressState);
+            var trackpadPress = Input.GetButton(Side + StaticAliases.alias_TrackpadPress);
+            var isPressChanged = GetButtonState(trackpadArgs.TrackpadPress, trackpadPress, out var newTrackpadPressState);
 
-            bool trackpadTouch = Input.GetButton(Side + StaticAliases.alias_TrackpadTouch);
-            InputDataButtonState newTrackpadTouchState;
-            bool isTouchChanged = GetButtonState(trackpadArgs.trackpadTouch, trackpadTouch, out newTrackpadTouchState);
+            var trackpadTouch = Input.GetButton(Side + StaticAliases.alias_TrackpadTouch);
+            var isTouchChanged = GetButtonState(trackpadArgs.TrackpadTouch, trackpadTouch, out var newTrackpadTouchState);
 
-            float horizontal = Input.GetAxis(Side + StaticAliases.alias_TrackpadHorizontal);
-            float vertical = -Input.GetAxis(Side + StaticAliases.alias_TrackpadVertical);
-            bool isTrackpadMoved = (horizontal != trackpadArgs.horizontal) | (vertical != trackpadArgs.vertical);
+            var horizontal = Input.GetAxis(Side + StaticAliases.alias_TrackpadHorizontal);
+            var vertical = -Input.GetAxis(Side + StaticAliases.alias_TrackpadVertical);
+            var isTrackpadMoved = (Math.Abs(horizontal - trackpadArgs.Horizontal) > TOLERANCE) | (Math.Abs(vertical - trackpadArgs.Vertical) > TOLERANCE);
 
             if (isPressChanged || isTouchChanged || isTrackpadMoved)
             {
-                trackpadArgs.trackpadPress = newTrackpadPressState;
-                trackpadArgs.trackpadTouch = newTrackpadTouchState;
-                trackpadArgs.horizontal = horizontal;
-                trackpadArgs.vertical = vertical;
+                trackpadArgs.TrackpadPress = newTrackpadPressState;
+                trackpadArgs.TrackpadTouch = newTrackpadTouchState;
+                trackpadArgs.Horizontal = horizontal;
+                trackpadArgs.Vertical = vertical;
             }
 
             if (isPressChanged)
             {
-                if (trackpadArgs.trackpadPress == InputDataButtonState.Pressed)
+                switch (trackpadArgs.TrackpadPress)
                 {
-                    OnTrackpadPressed?.Invoke(this, trackpadArgs);
-                }
-                else if (trackpadArgs.trackpadPress == InputDataButtonState.Released)
-                {
-                    OnTrackpadUnpressed?.Invoke(this, trackpadArgs);
+                    case InputDataButtonState.Pressed:
+                        OnTrackpadPressed?.Invoke(this, trackpadArgs);
+                        break;
+                    case InputDataButtonState.Released:
+                        OnTrackpadUnpressed?.Invoke(this, trackpadArgs);
+                        break;
+                    
+                    case InputDataButtonState.StayReleased:
+                    case InputDataButtonState.StayPressed:
+                        break;
+                    default:
+                        break;
                 }
             }
 
-            if (trackpadArgs.trackpadPress == InputDataButtonState.Pressed || trackpadArgs.trackpadPress == InputDataButtonState.StayPressed)
+            if (trackpadArgs.TrackpadPress == InputDataButtonState.Pressed || trackpadArgs.TrackpadPress == InputDataButtonState.StayPressed)
             {
                 OnTrackpadPressing?.Invoke(this, trackpadArgs);
             }
 
             if (isTouchChanged)
             {
-                if (trackpadArgs.trackpadTouch == InputDataButtonState.Pressed)
+                switch (trackpadArgs.TrackpadTouch)
                 {
-                    OnTrackpadTouched?.Invoke(this, trackpadArgs);
-                }
-                else if (trackpadArgs.trackpadTouch == InputDataButtonState.Released)
-                {
-                    OnTrackpadUntouched?.Invoke(this, trackpadArgs);
+                    case InputDataButtonState.Pressed:
+                        OnTrackpadTouched?.Invoke(this, trackpadArgs);
+                        break;
+                    case InputDataButtonState.Released:
+                        OnTrackpadUntouched?.Invoke(this, trackpadArgs);
+                        break;
+                    
+                    case InputDataButtonState.StayReleased:
+                    case InputDataButtonState.StayPressed:
+                        break;
+                    default:
+                        break;
                 }
             }
 
-            if (trackpadArgs.trackpadTouch == InputDataButtonState.Pressed || trackpadArgs.trackpadTouch == InputDataButtonState.StayPressed)
+            if (trackpadArgs.TrackpadTouch == InputDataButtonState.Pressed || trackpadArgs.TrackpadTouch == InputDataButtonState.StayPressed)
             {
                 OnTrackpadTouching?.Invoke(this, trackpadArgs);
             }
@@ -125,40 +164,38 @@ namespace XRControls.XRInput
             }
         }
 
-        public bool GetButtonState(InputDataButtonState previousState, bool isButtonPressedNow, out InputDataButtonState newState)
+        private static bool GetButtonState(InputDataButtonState previousState, bool isButtonPressedNow, out InputDataButtonState newState)
         {
-            bool isChanged = false;
+            var isChanged = false;
             newState = previousState;
-
-            if (previousState == InputDataButtonState.StayReleased && isButtonPressedNow)
+            switch (previousState)
             {
-                newState = InputDataButtonState.Pressed;
-                isChanged = true;
-            }
-            else if (previousState == InputDataButtonState.Pressed && isButtonPressedNow)
-            {
-                newState = InputDataButtonState.StayPressed;
-                isChanged = true;
-            }
-            else if (previousState == InputDataButtonState.Pressed && !isButtonPressedNow)
-            {
-                newState = InputDataButtonState.Released;
-                isChanged = true;
-            }
-            else if (previousState == InputDataButtonState.StayPressed && !isButtonPressedNow)
-            {
-                newState = InputDataButtonState.Released;
-                isChanged = true;
-            }
-            else if (previousState == InputDataButtonState.Released && isButtonPressedNow)
-            {
-                newState = InputDataButtonState.Pressed;
-                isChanged = true;
-            }
-            else if (previousState == InputDataButtonState.Released && !isButtonPressedNow)
-            {
-                newState = InputDataButtonState.StayReleased;
-                isChanged = true;
+                case InputDataButtonState.StayReleased when isButtonPressedNow:
+                    newState = InputDataButtonState.Pressed;
+                    isChanged = true;
+                    break;
+                case InputDataButtonState.Pressed when isButtonPressedNow:
+                    newState = InputDataButtonState.StayPressed;
+                    isChanged = true;
+                    break;
+                case InputDataButtonState.Pressed:
+                    newState = InputDataButtonState.Released;
+                    isChanged = true;
+                    break;
+                case InputDataButtonState.StayPressed when !isButtonPressedNow:
+                    newState = InputDataButtonState.Released;
+                    isChanged = true;
+                    break;
+                case InputDataButtonState.Released when isButtonPressedNow:
+                    newState = InputDataButtonState.Pressed;
+                    isChanged = true;
+                    break;
+                case InputDataButtonState.Released:
+                    newState = InputDataButtonState.StayReleased;
+                    isChanged = true;
+                    break;
+                default:
+                    break;
             }
 
             return isChanged;
@@ -166,12 +203,17 @@ namespace XRControls.XRInput
         #endregion
     }
 
+    public struct ControllerGripArgs
+    {
+        public InputDataButtonState GripPress;
+    }
+    
     public struct ControllerTrackpadArgs
     {
-        public InputDataButtonState trackpadTouch;
-        public InputDataButtonState trackpadPress;
-        public float vertical;
-        public float horizontal;
+        public InputDataButtonState TrackpadTouch;
+        public InputDataButtonState TrackpadPress;
+        public float Vertical;
+        public float Horizontal;
     }
 
     public enum InputDataButtonState
