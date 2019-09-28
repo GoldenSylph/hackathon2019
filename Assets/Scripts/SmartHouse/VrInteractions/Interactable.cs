@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 using XR_Input;
 
 namespace SmartHouse.VrInteractions
@@ -7,10 +8,11 @@ namespace SmartHouse.VrInteractions
     public class Interactable : MonoBehaviour
     {
         public delegate void GrabDropHandler(Interactable subject);
-        public event GrabDropHandler Grabbed;
-        public event GrabDropHandler Dropped;
+        public virtual event GrabDropHandler Grabbed;
+        public virtual event GrabDropHandler Dropped;
+
+        public bool handIsIn;
         
-        protected bool HandIsIn;
         protected virtual void Start()
         {
             XrPlayer.Player.LeftController.MyControllerEvents.OnGripPressed += OnGripPressed;
@@ -21,32 +23,34 @@ namespace SmartHouse.VrInteractions
 
         private void OnTriggerEnter(Collider other)
         {
-            HandIsIn = true;
+            handIsIn = true;
         }
 
         private void OnTriggerExit(Collider other)
         {
-            HandIsIn = false;
+            handIsIn = false;
         }
 
         public virtual void OnGripPressed(object sender, ControllerGripArgs e)
         {
-            if (!HandIsIn) return;
+            if (!handIsIn) return;
             Connect(sender, true, gameObject);
             Grabbed?.Invoke(this);
         }
         
         public virtual void OnGripReleased(object sender, ControllerGripArgs e)
         {
+            if (!handIsIn) return;
             Connect(sender, false, gameObject);
             Dropped?.Invoke(this);
         }
 
-        protected static void Connect(object sender, bool parent, GameObject toObject)
+        protected void Connect(object sender, bool parent, GameObject toObject)
         {
             var hand = ((XrControllerEvents) sender).MyXrController;
             if (parent)
             {
+                transform.position = hand.transform.position;
                 var fixedJoint = toObject.GetComponent<FixedJoint>();
                 if (!fixedJoint)
                 {
@@ -57,6 +61,12 @@ namespace SmartHouse.VrInteractions
             else
             {
                 var fixedJoint = toObject.GetComponent<FixedJoint>();
+                var subjectRigidBody = toObject.GetComponent<Rigidbody>();
+                if (subjectRigidBody)
+                {
+                    subjectRigidBody.isKinematic = false;
+                    subjectRigidBody.useGravity = true;
+                }
                 if (!fixedJoint) return;
                 fixedJoint.connectedBody = null;
                 Destroy(fixedJoint);

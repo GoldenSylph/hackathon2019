@@ -70,15 +70,11 @@ namespace XR_Input
             {
                 
                 case InputDataButtonState.Released:
-                    Debug.Log(OnGripReleased);
                     OnGripReleased?.Invoke(this, gripArgs);
-                    Debug.Log("Released");
                     break;
                 
                 case InputDataButtonState.Pressed:
-                    Debug.Log(OnGripPressed);
                     OnGripPressed?.Invoke(this, gripArgs);
-                    Debug.Log("Pressed");
                     break;
 
                 case InputDataButtonState.StayReleased:

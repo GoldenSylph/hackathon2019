@@ -2,37 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2e8bcb81-59fd-428e-8c37-e23b22ad668c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Models/Appliances.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Models/Appliances/Bulb_low.fbx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Models/Appliances/Bulb_low.fbx.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Models/Appliances/Dishwasher_low.fbx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Models/Appliances/Dishwasher_low.fbx.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Models/Appliances/Plate_low.fbx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Models/Appliances/Plate_low.fbx.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Models/Appliances/Router_low.fbx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Models/Appliances/Router_low.fbx.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Models/Appliances/TV_low.fbx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Models/Appliances/TV_low.fbx.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Models/Appliances/picture_low.fbx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Models/Appliances/picture_low.fbx.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/Canvas.prefab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/Canvas.prefab.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/SmartHouse/DataManagement/KeyToModel.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/SmartHouse/DataManagement/KeyToModel.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Models/Appliances/Table_low.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Models/Appliances/Table_low.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/SmartHouse/DataManagement/DataBuilder.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/SmartHouse/DataManagement/DataBuilder.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.hackathon2019/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.hackathon2019/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.hackathon2019/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.hackathon2019/.idea/indexLayout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.hackathon2019/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.hackathon2019/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/ItemsModels.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/ItemExample.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/ItemExample.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Canvas.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Canvas.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ModelDetermenator.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ModelDetermenator.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SmartHouse/DataManagement/AppendClass.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SmartHouse/DataManagement/AppendClass.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SmartHouse/DataManagement/ObjectRotation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SmartHouse/DataManagement/ObjectRotation.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SmartHouse/VrInteractions/Cloneable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SmartHouse/VrInteractions/Cloneable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SmartHouse/VrInteractions/Cloneable.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SmartHouse/VrInteractions/Cloneable.cs.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/SmartHouse/VrInteractions/Interactable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SmartHouse/VrInteractions/Interactable.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/SmartHouse/VrInteractions/SnapDropZone.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SmartHouse/VrInteractions/SnapDropZone.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/XR Input/XRControllerEvents.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/XR Input/XRControllerEvents.cs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -44,18 +26,18 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/SmartHouse/DataManagement/AppendClass.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/XR Input/XrControllerEvents.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/SmartHouse/DataManagement/Product.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/XR Input/XrSmoothMovement.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/SmartHouse/DataManagement/ObjectRotation.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/SmartHouse/DataManagement/KeyToModel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/E3232360-D51C-46C7-86DD-547E2F0B3F8B/6f/253a616b/GameObject.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/SmartHouse/VrInteractions/SnapDropZone.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/SmartHouse/VrInteractions/Interactable.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/SmartHouse/DataManagement/DataBuilder.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/SmartHouse/DataManagement/AppendClass.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/SmartHouse/DataManagement/Product.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/SmartHouse/DataManagement/ObjectRotation.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/XR Input/XrController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/XR Input/StaticAliases.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/SmartHouse/VrInteractions/Cloneable.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -66,7 +48,6 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/XR Input/XRController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/XrPlayer.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/XR Input/XrController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/XR Input/XrControllerEvents.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/SmartHouse/Interactable.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/SmartHouse/SnapDropZone.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/SmartHouse/Cloneable.cs" />
@@ -78,10 +59,13 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/SmartHouse/DataManagement/AppendClass.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/SmartHouse/DataManagement/ObjectRotation.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/SmartHouse/DataManagement/ModelDetermenator.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/SmartHouse/VrInteractions/Cloneable.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/SmartHouse/DataManagement/ModelDeterminator.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/SmartHouse/DataManagement/KeyToModel.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/SmartHouse/DataManagement/ProductBuilderHelper.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/SmartHouse/DataManagement/DataBuilder.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/SmartHouse/VrInteractions/SnapDropZone.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/XR Input/XrControllerEvents.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/SmartHouse/VrInteractions/Cloneable.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/SmartHouse/VrInteractions/Interactable.cs" />
       </list>
     </option>
@@ -149,7 +133,8 @@
       <workItem from="1569605666680" duration="14306000" />
       <workItem from="1569620228896" duration="6551000" />
       <workItem from="1569641915846" duration="2103000" />
-      <workItem from="1569654550418" duration="866000" />
+      <workItem from="1569654550418" duration="8059000" />
+      <workItem from="1569664461781" duration="3624000" />
     </task>
     <servers />
   </component>

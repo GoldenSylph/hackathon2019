@@ -16,6 +16,7 @@ namespace SmartHouse.VrInteractions
         {
             if (occupied) return;
             var otherInteractable = other.gameObject.GetComponent<Interactable>();
+            if (otherInteractable == null) return;
             otherInteractable.Dropped += OnDrop;
             otherInteractable.Grabbed += OnGrab;
         }
