@@ -1,8 +1,7 @@
-﻿using UnityEditor;
-using UnityEngine;
+﻿using UnityEngine;
 using XR_Input;
 
-namespace SmartHouse
+namespace SmartHouse.VrInteractions
 {
     public class Cloneable : Interactable
     {

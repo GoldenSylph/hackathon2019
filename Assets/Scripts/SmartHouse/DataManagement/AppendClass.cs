@@ -32,7 +32,7 @@ namespace SmartHouse.DataManagement
         {
             dto.products.ForEach(x =>
             {
-                var temp = Instantiate(itemExample, grid.transform, true);
+                var temp = Instantiate(itemExample, grid.transform, false);
                 temp.transform.Find("Price").GetComponent<Text>().text = x.price.ToString(CultureInfo.InvariantCulture);
                 temp.transform.Find("Name").GetComponent<Text>().text = x.name;
                 temp.transform.Find("Description").GetComponent<Text>().text = x.description;
