@@ -1,57 +1,47 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SpatialTracking;
-using UnityEngine.XR;
 
-namespace XRControls.XRInput
+namespace XR_Input
 {
     [RequireComponent(typeof(TrackedPoseDriver))]
-    public class XRController : MonoBehaviour
+    public class XrController : MonoBehaviour
     {
         [System.NonSerialized]
         public bool isRight;
 
         #region Properties
 
-        public bool IsRight
-        {
-            get
-            {
-                return MyTrackedPoseDriver.poseSource == TrackedPoseDriver.TrackedPose.RightPose;
-            }
-        }
+        public bool IsRight => MyTrackedPoseDriver.poseSource == TrackedPoseDriver.TrackedPose.RightPose;
 
-        private XRControllerEvents _myControllerEvents;
-        public XRControllerEvents MyControllerEvents
+        private XrControllerEvents myControllerEvents;
+        public XrControllerEvents MyControllerEvents
         {
             get
             {
-                if (_myControllerEvents == null)
+                if (!myControllerEvents)
                 {
-                    _myControllerEvents = GetComponent<XRControllerEvents>();
+                    myControllerEvents = GetComponent<XrControllerEvents>();
                 }
-                return _myControllerEvents;
+                return myControllerEvents;
             }
         }
 
-        private TrackedPoseDriver _myTrackedPoseDriver;
+        private TrackedPoseDriver myTrackedPoseDriver;
         private TrackedPoseDriver MyTrackedPoseDriver
         {
             get
             {
-                if (_myTrackedPoseDriver == null)
+                if (!myTrackedPoseDriver)
                 {
-                    _myTrackedPoseDriver = GetComponent<TrackedPoseDriver>();
+                    myTrackedPoseDriver = GetComponent<TrackedPoseDriver>();
                 }
 
-                return _myTrackedPoseDriver;
+                return myTrackedPoseDriver;
             }
         }
         #endregion
 
-        void Start()
+        private void Start()
         {
             Initialize();
         }
