@@ -17,6 +17,7 @@
           <e p="SmartHouse" t="Include">
             <e p="DataManagement" t="Include">
               <e p="AppendClass.cs" t="Include" />
+              <e p="KeyToModel.cs" t="Include" />
               <e p="ObjectRotation.cs" t="Include" />
               <e p="Product.cs" t="Include" />
             </e>

@@ -1,9 +1,7 @@
-﻿using System;
-using UnityEditor.Android;
-using UnityEngine;
+﻿using UnityEngine;
 using XR_Input;
 
-namespace SmartHouse
+namespace SmartHouse.VrInteractions
 {
     [RequireComponent(typeof(Rigidbody), typeof(Collider))]
     public class Interactable : MonoBehaviour

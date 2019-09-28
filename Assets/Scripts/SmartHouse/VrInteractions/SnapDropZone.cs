@@ -1,11 +1,12 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace SmartHouse
+namespace SmartHouse.VrInteractions
 {
     [RequireComponent(typeof(Collider))]
     public class SnapDropZone : MonoBehaviour
     {
+        public bool appendScale;
+        
         public delegate void SnapDropZoneHandler(Interactable subject);
         public event SnapDropZoneHandler Snapped;
         public event SnapDropZoneHandler Unsnapped;
@@ -29,7 +30,14 @@ namespace SmartHouse
         private void OnDrop(Interactable subject)
         {
             subject.gameObject.GetComponent<Rigidbody>().isKinematic = true;
-            subject.transform.position = transform.position;
+            var subjectTransform = subject.transform;
+            var myTransform = transform;
+            subjectTransform.position = myTransform.position;
+            subjectTransform.rotation = myTransform.rotation;
+            if (appendScale)
+            {
+                subjectTransform.localScale = myTransform.localScale;
+            }
             subject.Dropped -= OnDrop;
             occupied = true;
             Snapped?.Invoke(subject);
