@@ -5,15 +5,15 @@ using XR_Input;
 namespace SmartHouse.VrInteractions
 {
     [RequireComponent(typeof(Rigidbody), typeof(Collider))]
-    public class Interactable : MonoBehaviour
+    public sealed class Interactable : MonoBehaviour
     {
         public delegate void GrabDropHandler(Interactable subject);
-        public virtual event GrabDropHandler Grabbed;
-        public virtual event GrabDropHandler Dropped;
+        public event GrabDropHandler Grabbed;
+        public event GrabDropHandler Dropped;
 
         public bool handIsIn;
-        
-        protected virtual void Start()
+
+        private void Start()
         {
             XrPlayer.Player.LeftController.MyControllerEvents.OnGripPressed += OnGripPressed;
             XrPlayer.Player.LeftController.MyControllerEvents.OnGripReleased += OnGripReleased;
@@ -23,29 +23,44 @@ namespace SmartHouse.VrInteractions
 
         private void OnTriggerEnter(Collider other)
         {
-            handIsIn = true;
+            if (other.gameObject.GetComponent<XrController>())
+            {
+                handIsIn = true;     
+            }
+            
+        }
+        
+        private void OnTriggerStay(Collider other)
+        {
+            if (other.gameObject.GetComponent<XrController>())
+            {
+                handIsIn = true;     
+            }
         }
 
         private void OnTriggerExit(Collider other)
         {
-            handIsIn = false;
+            if (other.gameObject.GetComponent<XrController>())
+            {
+                handIsIn = false;     
+            }
         }
 
-        public virtual void OnGripPressed(object sender, ControllerGripArgs e)
+        public void OnGripPressed(object sender, ControllerGripArgs e)
         {
             if (!handIsIn) return;
             Connect(sender, true, gameObject);
             Grabbed?.Invoke(this);
         }
         
-        public virtual void OnGripReleased(object sender, ControllerGripArgs e)
+        public void OnGripReleased(object sender, ControllerGripArgs e)
         {
             if (!handIsIn) return;
             Connect(sender, false, gameObject);
             Dropped?.Invoke(this);
         }
 
-        protected void Connect(object sender, bool parent, GameObject toObject)
+        private void Connect(object sender, bool parent, GameObject toObject)
         {
             var hand = ((XrControllerEvents) sender).MyXrController;
             if (parent)

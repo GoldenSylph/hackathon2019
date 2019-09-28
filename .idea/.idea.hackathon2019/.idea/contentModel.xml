@@ -17,11 +17,12 @@
           <e p="SmartHouse" t="Include">
             <e p="DataManagement" t="Include">
               <e p="AppendClass.cs" t="Include" />
-              <e p="CSVParsing.cs" t="Include" />
               <e p="DataBuilder.cs" t="Include" />
               <e p="KeyToModel.cs" t="Include" />
               <e p="ObjectRotation.cs" t="Include" />
               <e p="Product.cs" t="Include" />
+              <e p="ProductHolder.cs" t="Include" />
+              <e p="ProductWatcher.cs" t="Include" />
             </e>
             <e p="VrInteractions" t="Include">
               <e p="Interactable.cs" t="Include" />
